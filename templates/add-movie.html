@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieHub | Add Movie</title>
+</head>
+<body>
+    <section>
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label>Movie name</label>
+                <input type="text" name="movie">
+            </div>
+
+            <div>
+                <label>Release Date</label>
+                <input type="date" name="release_date">
+            </div>
+
+            <div>
+                <label>Category</label>
+                <select name="category">
+                    {% for cat in all_categories %}
+                        <option value="{{cat.id}}">{{cat.category}}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <div>
+                <label>Description</label>
+                <textarea name="desc"></textarea>
+            </div>
+
+            <div>
+                <label>Poster</label>
+                <input type="file" name="poster">
+            </div>
+            <div>
+                <label>Rating</label>
+                <input type="number" name="rating">
+            </div>
+            <div>
+                <input type="submit" value="Add Movie">
+            </div>
+        </form>
+    </section>
+</body>
+</html>
