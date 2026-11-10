@@ -23,3 +23,8 @@ def addMovie(request):
               rating=rating,poster=poster,category=category).save()
         return redirect("all_movies")
     return render(request,"add-movie.html",{"all_categories":categories})
+
+def movieDetail(request,movie_id):
+    movie=Movie.objects.get(id=movie_id)
+    return render(request,"movie-detail.html",{"movie":movie})
+

@@ -16,6 +16,7 @@
                     <div>
                         {{movie.name}}
                     </div>
+                    <a href="{% url 'movie_detail' movie.id %}">View Details</a>
                 </div>
             {% endfor %}
         </div>
