@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from movies.models import Movie,Category
 # Create your views here.
 
@@ -12,6 +12,14 @@ def allMovies(request):
 def addMovie(request):
     categories=Category.objects.all()
     if request.method=="POST":
-        print(request.POST)
-        print(request.FILES)
+        movie=request.POST.get('movie')
+        re_date=request.POST.get('release_date')
+        cate=request.POST.get('category')
+        description=request.POST.get('desc')
+        poster=request.FILES.get('poster')
+        rating=request.POST.get('rating')
+        category=Category.objects.get(id=cate)
+        Movie(name=movie,description=description,release_date=re_date,
+              rating=rating,poster=poster,category=category).save()
+        return redirect("all_movies")
     return render(request,"add-movie.html",{"all_categories":categories})
