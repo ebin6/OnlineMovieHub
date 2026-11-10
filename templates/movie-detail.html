@@ -16,6 +16,9 @@
                 <p>{{movie.description}}</p>
                 <p>{{movie.category}}</p>
                 <p>{{movie.release_date}}</p>
+                <div>
+                    <a href="{% url 'edit_movie' movie.id %}">Update</a>
+                </div>
             </div>
         </div>
     </section>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieHub | Update Movie</title>
+</head>
+<body>
+    <section style="display: flex;">
+        <div>
+            <img src="{{movie.poster.url}}">
+        </div>
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label>Movie name</label>
+                <input type="text" name="movie" value="{{movie.name}}">
+            </div>
+
+            <div>
+                <label>Release Date</label>
+                <input type="date" name="release_date" value="{{movie.release_date|date:'Y-m-d'}}">
+            </div>
+
+            <div>
+                <label>Category</label>
+                <select name="category">
+                    {% for cat in all_categories %}
+                        <option value="{{cat.id}}" {% if movie.category.id == cat.id %}selected{% endif %}>{{cat.category}}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <div>
+                <label>Description</label>
+                <textarea name="desc">{{movie.description}}</textarea>
+            </div>
+
+            <div>
+                <label>Poster</label>
+                <input type="file" name="poster">
+            </div>
+            <div>
+                <label>Rating</label>
+                <input type="number" name="rating" value="{{movie.rating}}">
+            </div>
+            <div>
+                <input type="submit" value="Save Changes">
+            </div>
+        </form>
+    </section>
+</body>
+</html>

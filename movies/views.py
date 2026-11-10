@@ -28,3 +28,8 @@ def movieDetail(request,movie_id):
     movie=Movie.objects.get(id=movie_id)
     return render(request,"movie-detail.html",{"movie":movie})
 
+def updateMovie(request,movie_id):
+    movie=Movie.objects.get(id=movie_id)
+    categories=Category.objects.all()
+
+    return render(request,"update-movie.html",{"movie":movie,"all_categories":categories})
