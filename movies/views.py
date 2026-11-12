@@ -30,6 +30,16 @@ def movieDetail(request,movie_id):
 
 def updateMovie(request,movie_id):
     movie=Movie.objects.get(id=movie_id)
+    if request.method=="POST":
+        movie.name=request.POST.get('movie')
+        movie.release_date=request.POST.get('release_date')
+        movie.description=request.POST.get('desc')
+        if request.FILES.get('poster'):
+            movie.poster=request.FILES.get('poster')
+        movie.rating=request.POST.get('rating')
+        cate=request.POST.get('category')
+        movie.category=Category.objects.get(id=cate)
+        movie.save()
+        return redirect("all_movies")
     categories=Category.objects.all()
-
     return render(request,"update-movie.html",{"movie":movie,"all_categories":categories})
