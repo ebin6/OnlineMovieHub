@@ -19,8 +19,18 @@
                 <div>
                     <a href="{% url 'edit_movie' movie.id %}">Update</a>
                 </div>
+                <div>
+                    <a href="{% url 'delete_movie' movie.id %}" onclick="return deleteConfirmation()">Delete</a>
+                </div>
             </div>
         </div>
     </section>
+
+    <script>
+        function deleteConfirmation(){
+            let choice=confirm("Do you wish to delete this movie ?")
+            return choice
+        }
+    </script>
 </body>
 </html>

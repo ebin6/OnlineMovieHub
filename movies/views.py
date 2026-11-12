@@ -43,3 +43,9 @@ def updateMovie(request,movie_id):
         return redirect("all_movies")
     categories=Category.objects.all()
     return render(request,"update-movie.html",{"movie":movie,"all_categories":categories})
+
+
+def deleteMovie(request,movie_id):
+    movie=Movie.objects.get(id=movie_id)
+    movie.delete()
+    return redirect("all_movies")
