@@ -30,7 +30,11 @@ def signIn(request):
         user=auth.authenticate(username=username,password=passwd)
         if user is not None:
             auth.login(request,user)
-            return redirect("accounts:index")
+            return redirect("movies:index")
         else:
-            return HttpResponse("Invalid username or password")
+            messages.error(request,"Invalid username or password")
     return render(request,"login.html")
+
+def logout(request):
+    auth.logout(request)
+    return redirect("movies:index")

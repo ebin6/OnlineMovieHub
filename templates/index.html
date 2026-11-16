@@ -10,7 +10,13 @@
         <nav>
             <ul class="nav-list">
                 <li><a href="{% url 'movies:index' %}">Home</a></li>
-                
+                <li><a href="{% url 'movies:all_movies' %}">All Movies</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'accounts:register' %}">Register</a></li>
+                    <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
