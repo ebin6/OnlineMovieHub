@@ -21,7 +21,7 @@ def addMovie(request):
         category=Category.objects.get(id=cate)
         Movie(name=movie,description=description,release_date=re_date,
               rating=rating,poster=poster,category=category).save()
-        return redirect("all_movies")
+        return redirect("movies:all_movies")
     return render(request,"add-movie.html",{"all_categories":categories})
 
 def movieDetail(request,movie_id):
@@ -40,7 +40,7 @@ def updateMovie(request,movie_id):
         cate=request.POST.get('category')
         movie.category=Category.objects.get(id=cate)
         movie.save()
-        return redirect("all_movies")
+        return redirect("movies:all_movies")
     categories=Category.objects.all()
     return render(request,"update-movie.html",{"movie":movie,"all_categories":categories})
 
@@ -48,4 +48,4 @@ def updateMovie(request,movie_id):
 def deleteMovie(request,movie_id):
     movie=Movie.objects.get(id=movie_id)
     movie.delete()
-    return redirect("all_movies")
+    return redirect("movies:all_movies")

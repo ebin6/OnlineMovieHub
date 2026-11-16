@@ -15,11 +15,11 @@ def signUp(request):
         password=request.POST.get("password")
         if User.objects.filter(username=email).exists():
             messages.info(request,"Username already exists")
-            return redirect("register")
+            return redirect("accounts:register")
         else:
             User.objects.create_user(username=email,first_name=first_name,last_name=last_name,password=password).save()
             messages.success(request,"Registration completed . Please login to continue")
-            return redirect("login")
+            return redirect("accounts:login")
     return render(request,"register.html")
 
 
@@ -30,7 +30,7 @@ def signIn(request):
         user=auth.authenticate(username=username,password=passwd)
         if user is not None:
             auth.login(request,user)
-            return redirect("index")
+            return redirect("accounts:index")
         else:
             return HttpResponse("Invalid username or password")
     return render(request,"login.html")

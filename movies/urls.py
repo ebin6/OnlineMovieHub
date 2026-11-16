@@ -1,6 +1,8 @@
 from django.urls import path
 from movies import views
 
+app_name="movies"
+
 urlpatterns=[
     path("",views.home,name="index"),
     path("all-movies/",views.allMovies,name="all_movies"),
