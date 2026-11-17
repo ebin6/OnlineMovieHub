@@ -7,11 +7,14 @@
 </head>
 <body>
     <section>
+        {% for msg in messages %}
+            {{msg}}
+        {% endfor %}
         <h1>Add Actor</h1>
         <div>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{my_form.as_p}}
+                {{my_form.as_div}}
                 <input type="submit" value="Add Actor">
             </form>
         </div>

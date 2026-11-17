@@ -5,5 +5,5 @@ from actors import views
 app_name="actors"
 
 urlpatterns=[
-    path("add-actor/",views.addActor,name="add_actor")
+    path("add-actor/",views.addActor,name="add_actors")
 ]
