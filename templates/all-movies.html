@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul class="nav-list">
-                    <li><a href="{% url 'movies:index' %}">Home</a></li>
-                    <li><a href="{% url 'movies:all_movies' %}">All Movies</a></li>
-                    {% if request.user.is_authenticated %}
-                        <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
-                    {% else %}
-                        <li><a href="{% url 'accounts:register' %}">Register</a></li>
-                        <li><a href="{% url 'accounts:login' %}">Login</a></li>
-                    {% endif %}
-            </ul>
-        </nav>
-    </header>
-    <h1>All Movies</h1>
+{% extends 'base.html' %}
+
+{% block title %} MovieHub | Add Movie {% endblock %}
+
+{% block content %}
 
     <section>
         <div>
@@ -35,5 +17,4 @@
             {% endfor %}
         </div>
     </section>
-</body>
-</html>
+{% endblock %}
