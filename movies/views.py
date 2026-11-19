@@ -1,5 +1,8 @@
 from django.shortcuts import render,redirect
 from movies.models import Movie,Category
+from django.contrib.auth.decorators import login_required
+from accounts.decorators import superuser_required
+
 # Create your views here.
 
 def home(request):
@@ -9,6 +12,7 @@ def allMovies(request):
     movies=Movie.objects.all()
     return render(request,"all-movies.html",{"all_movies":movies})
 
+@superuser_required
 def addMovie(request):
     categories=Category.objects.all()
     if request.method=="POST":
@@ -24,10 +28,12 @@ def addMovie(request):
         return redirect("movies:all_movies")
     return render(request,"add-movie.html",{"all_categories":categories})
 
+@login_required(login_url="accounts:login")
 def movieDetail(request,movie_id):
     movie=Movie.objects.get(id=movie_id)
     return render(request,"movie-detail.html",{"movie":movie})
 
+@superuser_required
 def updateMovie(request,movie_id):
     movie=Movie.objects.get(id=movie_id)
     if request.method=="POST":
@@ -45,6 +51,7 @@ def updateMovie(request,movie_id):
     return render(request,"update-movie.html",{"movie":movie,"all_categories":categories})
 
 
+@superuser_required
 def deleteMovie(request,movie_id):
     movie=Movie.objects.get(id=movie_id)
     movie.delete()
