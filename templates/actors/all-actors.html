@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} MovieHub | All Actors {% endblock %}
+
+{% block content %}
+
+    <section>
+        <h1>All Actors</h1>
+
+        <div>
+            {% for actor in actors %}
+                <div>
+                    <div>
+                        <img src="{{actor.image.url}}" style="width: 230px;height: 300px;">
+                    </div>
+                    <h4>{{actor.name}}</h4>
+                    <a href="">View Details</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

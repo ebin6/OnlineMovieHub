@@ -4,7 +4,7 @@ from actors.forms import ActorForm
 from django.contrib import messages
 from actors.models import Actors
 
-from django.views.generic import CreateView
+from django.views.generic import CreateView,ListView
 
 
 # Create your views here.
@@ -27,3 +27,9 @@ class AddActor(CreateView):
     form_class=ActorForm
     template_name="actors/add-actor.html"
     success_url=reverse_lazy("movies:index")
+
+
+class ListActors(ListView):
+    model=Actors
+    template_name="actors/all-actors.html"
+    context_object_name="actors"

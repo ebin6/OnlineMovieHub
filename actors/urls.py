@@ -6,5 +6,6 @@ app_name="actors"
 
 urlpatterns=[
     # path("add-actor/",views.addActor,name="add_actors")
-    path("add-actor/",views.AddActor.as_view(),name="add_actors")
+    path("add-actor/",views.AddActor.as_view(),name="add_actors"),
+    path("list-actors/",views.ListActors.as_view(),name="list_actors")
 ]
