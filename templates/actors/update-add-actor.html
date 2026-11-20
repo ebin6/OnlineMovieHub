@@ -7,12 +7,17 @@
         {% for msg in messages %}
             {{msg}}
         {% endfor %}
-        <h1>Add Actor</h1>
-        <div>
+        {% if actor %}
+            <h1>Update Actor</h1>
+        {% else %}
+            <h1>Add Actor</h1>
+        {% endif %}
+        <div style="display: flex;">
+            <img src="{{actor.image.url}}" style="width: 300px;height: 350px;">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{form.as_div}}
-                <input type="submit" value="Add Actor">
+                <input type="submit" value="{% if actor %}Update Actor{% else %}Add Actor{% endif %}">
             </form>
         </div>
     </section>

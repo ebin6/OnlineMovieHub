@@ -4,7 +4,7 @@ from actors.forms import ActorForm
 from django.contrib import messages
 from actors.models import Actors
 
-from django.views.generic import CreateView,ListView,DetailView
+from django.views.generic import CreateView,ListView,DetailView,UpdateView
 
 
 # Create your views here.
@@ -25,7 +25,7 @@ from django.views.generic import CreateView,ListView,DetailView
 class AddActor(CreateView):
     model=Actors
     form_class=ActorForm
-    template_name="actors/add-actor.html"
+    template_name="actors/update-add-actor.html"
     success_url=reverse_lazy("movies:index")
 
 
@@ -39,3 +39,12 @@ class ActorDetail(DetailView):
     model=Actors
     template_name="actors/actor-detail.html"
     context_object_name="actor"
+
+
+class UpdateActor(UpdateView):
+    model=Actors
+    form_class=ActorForm
+    template_name="actors/update-add-actor.html"
+    success_url=reverse_lazy("actors:list_actors")
+    context_object_name="actor"
+
