@@ -4,7 +4,7 @@ from actors.forms import ActorForm
 from django.contrib import messages
 from actors.models import Actors
 
-from django.views.generic import CreateView,ListView
+from django.views.generic import CreateView,ListView,DetailView
 
 
 # Create your views here.
@@ -33,3 +33,9 @@ class ListActors(ListView):
     model=Actors
     template_name="actors/all-actors.html"
     context_object_name="actors"
+
+
+class ActorDetail(DetailView):
+    model=Actors
+    template_name="actors/actor-detail.html"
+    context_object_name="actor"

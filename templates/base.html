@@ -11,6 +11,7 @@
             <ul class="nav-list">
                 <li><a href="{% url 'movies:index' %}">Home</a></li>
                 <li><a href="{% url 'movies:all_movies' %}">All Movies</a></li>
+                <li><a href="{% url 'actors:list_actors' %}">All Actors</a></li>
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
                 {% else %}

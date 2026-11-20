@@ -14,7 +14,7 @@
                         <img src="{{actor.image.url}}" style="width: 230px;height: 300px;">
                     </div>
                     <h4>{{actor.name}}</h4>
-                    <a href="">View Details</a>
+                    <a href="{% url 'actors:actor_detail' actor.id %}">View Details</a>
                 </div>
             {% endfor %}
         </div>

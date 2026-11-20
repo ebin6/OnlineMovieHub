@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} MovieHub | Actor Detail {% endblock %}
+
+{% block content %}
+
+<main>
+
+    <div style="display: flex;">
+        <img src="{{actor.image.url}}" style="width: 300px;height: 350px;">
+
+        <div style="padding: 10px 50px;">
+            <h1>{{actor.name}}</h1>
+            <p>{{actor.about}}</p>
+            <p>{{actor.dob}}</p>
+        </div>
+    </div>
+</main>
+{% endblock %}
