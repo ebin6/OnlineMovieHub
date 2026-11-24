@@ -13,7 +13,9 @@
             <h1>Add Actor</h1>
         {% endif %}
         <div style="display: flex;">
-            <img src="{{actor.image.url}}" style="width: 300px;height: 350px;">
+            {% if actor %}
+                <img src="{{actor.image.url}}" style="width: 300px;height: 350px;">
+            {% endif %}
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{form.as_div}}

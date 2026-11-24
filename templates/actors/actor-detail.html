@@ -13,7 +13,23 @@
             <h1>{{actor.name}}</h1>
             <p>{{actor.about}}</p>
             <p>{{actor.dob}}</p>
+            <div style="display: flex;">
+                <a href="{% url 'actors:update_actor' actor.id %}"><button>Update</button></a>
+                <form method="post" action="{% url 'actors:delete_actor' actor.id %}" onsubmit="return deleteActor()">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete Actor">
+                </form>
+            </div>
         </div>
+
+        
     </div>
+
 </main>
+<script>
+    function deleteActor(){
+        let choice=confirm("Do you wish to delete this actor ?")
+        return choice
+    }
+</script>
 {% endblock %}

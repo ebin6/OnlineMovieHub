@@ -4,7 +4,7 @@ from actors.forms import ActorForm
 from django.contrib import messages
 from actors.models import Actors
 
-from django.views.generic import CreateView,ListView,DetailView,UpdateView
+from django.views.generic import CreateView,ListView,DetailView,UpdateView,DeleteView
 
 
 # Create your views here.
@@ -47,4 +47,8 @@ class UpdateActor(UpdateView):
     template_name="actors/update-add-actor.html"
     success_url=reverse_lazy("actors:list_actors")
     context_object_name="actor"
+
+class DeleteActor(DeleteView):
+    model=Actors
+    success_url= reverse_lazy("actors:list_actors")
 
