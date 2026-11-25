@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.contrib import auth
 from django.contrib import messages
 from accounts.models import Profile
+from django.db import transaction
 
 # Create your views here.
 
@@ -19,15 +20,20 @@ def signUp(request):
             messages.info(request,"Username already exists")
             return redirect("accounts:register")
         else:
-            user=User.objects.create_user(username=email,first_name=first_name,
-                                     last_name=last_name,password=password)
-            profile=Profile(user=user,phone=phone)
-            if "profile_pic" in request.FILES:
-                profile_pic=request.FILES("profile_pic")
-                profile.profile_pic=profile_pic
-            profile.save()
-            messages.success(request,"Registration completed . Please login to continue")
-            return redirect("accounts:login")
+            try:
+                with transaction.atomic():
+                    user=User.objects.create_user(username=email,first_name=first_name,
+                                            last_name=last_name,password=password)
+                    profile=Profile(user=user,phone=phone)
+                    if "profile_pic" in request.FILES:
+                        profile_pic=request.FILES("profile_pic")
+                        profile.profile_pic=profile_pic
+                    profile.save()
+                    messages.success(request,"Registration completed . Please login to continue")
+                    return redirect("accounts:login")
+            except Exception as e:
+                print(e)
+                messages.error(request,"Unable to process your request")
     return render(request,"register.html")
 
 
