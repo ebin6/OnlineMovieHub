@@ -11,10 +11,10 @@ def home(request):
 def allMovies(request):
     movies=Movie.objects.all()
 
-    category_id=request.GET.get("category")
+    category_slug=request.GET.get("category")
 
-    if category_id:# If All categories choosen then category_id is None else category id is passed from form .
-        movies=Movie.objects.filter(category_id=category_id)
+    if category_slug:# If All categories choosen then category_slug is None else category slug is passed from form .
+        movies=Movie.objects.filter(category__slug=category_slug)
     return render(request,"all-movies.html",{"all_movies":movies})
 
 @superuser_required
